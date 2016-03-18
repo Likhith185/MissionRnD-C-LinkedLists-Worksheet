@@ -18,6 +18,26 @@ struct node {
 	struct node *next;
 };
 
-struct node * removeEveryKthNode(struct node *head, int K) {
-	return NULL;
+struct node * removeEveryKthNode(struct node * head, int K)
+{
+	if (K <= 1 || head == NULL)
+		return NULL;
+	int index = 1;
+	struct node *head_two;
+	 head_two = head;
+	struct node * temp;
+	while (head != NULL)
+	{
+		if (index == K - 1 && head->next != NULL)
+		{
+			temp = head->next;
+			head->next = temp->next;
+			index = 1;
+		}
+		else
+			index = (index + 1) % K;
+
+		head = head->next;
+	}
+	return head_two;
 }
